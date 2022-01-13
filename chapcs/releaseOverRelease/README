@@ -1,0 +1,37 @@
+This copy of the data was collected manually by bradc on Aug 31-Sep 1
+2018 against 4ab7699425 of chapel-lang/master within an exclusive
+slurm partition on chapcs07 within
+/ptmp/chapelu/release-over-release/chapel.  It is being archived here
+for the purposes of splicing against nightly performance data.
+
+A few notes on how the data was gathered this time:
+
+* Starting the job at ~8:00am caused the job to only be partway
+  through 1.17.1 at midnight the first day.  I re-ran testing for
+  1.17.1 on day two.  Next time around, we may want to just comment
+  out the 1.17.1 releases for the first day and the latter ones for
+  the second to avoid getting double data for some 1.17.1 tests.
+
+* Unfortunately, the nightly performance testing didn't successfully
+  turn off my testing, so the two ran concurrently the first night
+  while I was finishing up 1.17.1.  For this reason, I had to go back
+  and edit out the original 1.17.1 numbers.  Worse, on the second
+  day's run, I failed to set CHPL_TEST_PERF_DIR correctly, so ended up
+  having to merge the two days' outputs (sigh...).
+
+* For some reason, I lost my exclusive partition the morning of the
+  first day for perhaps an hour or so.  I didn't check to see whether
+  others were doing testing at the same time to see whether it
+  impacted things.  Since it was during the oldest runs, I didn't feel
+  that worried about things.
+
+* We lost backwards compatibility due to...
+  - delete-free class modifiers (owned, borrowed, unmanaged, etc.)
+
+* This was run against gcc 6.3 as the back-end compiler.  Hoewver, the
+  1.12 and 1.13.1 installations of chpl were built against gcc 6.2.
+  Older versions of 'chpl' are built against older versions of gcc as
+  they do not build cleanly against gcc >= 6.2.  (However, it is
+  believed that the runtime and third-party libraries are less likely
+  to have this limitation if someone wanted to rebuild them with a
+  newer gcc in the future).

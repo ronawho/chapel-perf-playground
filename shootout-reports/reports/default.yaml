@@ -1,0 +1,27 @@
+---
+
+# This is the default input for generating plots
+# See sample.yaml for explanation of fields
+
+main:
+    language: chapel
+    fastest: true
+    smallest: true
+
+languages:
+    - chapel
+    - gcc
+    - gpp
+    - go
+    - java
+    - python3
+    - rust
+    - scala
+    - swift
+    - ifc
+
+# Blacklist a fasta that doesn't represent ideal Chapel impl.
+blacklist:
+    chapel:
+        fasta: 1
+...

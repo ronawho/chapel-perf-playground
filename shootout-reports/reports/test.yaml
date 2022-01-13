@@ -1,0 +1,14 @@
+---
+
+# See sample.yaml for explanation of fields
+
+data: ../u64q/data-2016-10-04.csv
+
+main:
+    language: chapel
+
+languages:
+    - chapel
+    - gcc
+    - go
+...

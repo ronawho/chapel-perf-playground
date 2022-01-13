@@ -1,0 +1,58 @@
+#!/usr/bin/env gnuplot
+
+# Template for generating scalability graphs
+# dollar sign is the escape character, double them if you need one
+#
+# Args:
+#   name: output file name
+#   xlabel: x-axis label
+#   ylabel: y-axis label
+#   columns: string to pass to plot
+#
+# Based off of:
+# http://youinfinitesnake.blogspot.com/2011/02/attractive-scientific-plots-with.html
+#
+set terminal pdfcairo font "Gill Sans,9" linewidth 2 rounded fontscale 1.0 enhanced
+set output "ft-A-no-local.pdf"
+
+# Line style for axes
+set style line 80 lc rgb "#808080" lw 2
+
+# Line style for grid
+set style line 81 lt 2  # dashed
+set style line 81 lc rgb "#808080"  # grey
+set style line 81 lw 0.6
+
+set grid back linestyle 81
+set grid noxtics
+set border 3 back linestyle 80
+# Remove border on top and right.
+set xtics nomirror
+set ytics nomirror
+
+# Line styles
+set style line 1 lc rgb "#00A000" lw 1 pt 7 ps 0.5
+set style line 2 lc rgb "#5060D0" lw 1 pt 7 ps 0.5
+set style line 3 lc rgb "#A00000" lw 1 pt 7 ps 0.5
+set style line 4 lc rgb "#F25900" lw 1 pt 7 ps 0.5
+set style line 5 lc rgb "#8600C4" lw 1 pt 7 ps 0.5
+
+# title options
+set title "Chapel Local Versus No-local Timing: FT Size A"
+
+# legend options
+set key below horizontal
+set key font "Gill Sans, 6"
+set key autotitle columnhead
+
+# set default options
+
+
+# set style specific options
+set ylabel "Time (seconds)"
+set yrange [0:*]
+
+
+# data / plotting
+set datafile separator '\t'
+plot 'ft-A-no-local.dat' using 2:xticlabels(1) with linespoints linestyle 1, 'ft-A-no-local.dat' using 3:xticlabels(1) with linespoints linestyle 2

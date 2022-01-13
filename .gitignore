@@ -1,0 +1,16 @@
+*~
+*.errors
+*.git
+*.gpl
+*.log
+*.log.summary
+*.log.sorted
+index.html
+html
+OLD
+cray-xc/*/*/*
+!cray-xc/*/*/*.dat
+tempCompPerfDatFiles
+download-stats/graphs/
+perf-report/single-locale/*/scratch/
+*Thumbs.db

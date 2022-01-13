@@ -1,0 +1,55 @@
+#!/usr/bin/env gnuplot
+
+# Template for shootout graphs
+#
+# Args:
+#   name: output file name
+#   title: title to use for the graph
+#   graph_style: set up for type of graph (histo/line)
+#   columns: string to pass to plot
+#
+# Based somewhat off of pdf_template.gnuplot which lives in ../perf/ and is
+# based off of:
+# http://youinfinitesnake.blogspot.com/2011/02/attractive-scientific-plots-with.html
+#
+
+set terminal pdfcairo font "Gill Sans,9" linewidth 2 rounded fontscale 1.0 enhanced
+set output "/data/cf/chapel/lydia/chapel/internal-repos/chapel-perf/perf-report/single-locale/shootout/generatedFiles/binarytrees_all.pdf"
+
+# Line style for axes
+set style line 80 lc rgb "#808080" lw 2
+
+# Line style for grid
+set style line 81 lt 0  # dashed
+set style line 81 lc rgb "#808080"  # grey
+set style line 81 lw 0.7
+
+set grid back linestyle 81
+set grid noxtics
+set border 3 back linestyle 80
+# Remove border on top and right.
+set xtics nomirror
+set ytics nomirror
+
+# Allow data to dictate the graph size
+set auto x
+set yrange [0: *]
+
+# legend options
+set key below horizontal
+set key font "Gill Sans, 6"
+set key autotitle columnhead
+
+# Make histogram of data
+set style data histogram
+set style fill solid border -1
+set key samplen 2
+set key spacing .5
+
+set ylabel "Time (seconds)"
+set title "binarytrees, all versions"
+
+# data / plotting
+set datafile separator '\t'
+plot '/data/cf/chapel/lydia/chapel/internal-repos/chapel-perf/perf-report/single-locale/shootout/generatedFiles/binarytrees_all.dat' using 2:xtic(1) ti col lc rgb "#8D941E", '/data/cf/chapel/lydia/chapel/internal-repos/chapel-perf/perf-report/single-locale/shootout/generatedFiles/binarytrees_all.dat' using 3:xtic(1) ti col lc rgb "#DD7E0E", '/data/cf/chapel/lydia/chapel/internal-repos/chapel-perf/perf-report/single-locale/shootout/generatedFiles/binarytrees_all.dat' using 4:xtic(1) ti col lc rgb "#BC6CE2", '/data/cf/chapel/lydia/chapel/internal-repos/chapel-perf/perf-report/single-locale/shootout/generatedFiles/binarytrees_all.dat' using 5:xtic(1) ti col lc rgb "#E5B02B", '/data/cf/chapel/lydia/chapel/internal-repos/chapel-perf/perf-report/single-locale/shootout/generatedFiles/binarytrees_all.dat' using 6:xtic(1) ti col lc rgb "#808080"
+

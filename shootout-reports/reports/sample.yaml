@@ -1,0 +1,48 @@
+# Header
+---
+# shootout report config file!
+
+# Leave the 'data' field undefined to pull the latest data from benchmarksgame
+
+# This will re-use cached benchmarksgame data (assuming it has been pulled)
+#data: benchmarksgame/website/websites/u64q/data/data.csv
+
+# This will use the stored 1.14.0 data
+#data: ../u64q/data-2016-10-18.csv
+
+# This will use the stored 1.13.1 data
+#data: ../u64q/data-2016-10-04.csv
+
+# Main language to serve as comparison pivot, and to plot alone
+main:
+    language: chapel
+
+# Other languages to compare -- include the main language here as well
+languages:
+    - chapel
+    - go
+    - rust
+    - gcc
+
+
+# Scale values to minimum of selected languages
+# If omitted, defaults to scaling w.r.t. all languages with data
+reference: languages
+
+# Optionally blacklist any languages, benchmarks, or specific data points
+#blacklist:
+#   language:
+#       - benchmark: ID1, ID2, ...
+# Leaving a specifier empty acts as a wildcard, as demonstrated below
+blacklist:
+    # This will blacklist the rust language
+    rust:
+    # This will blacklist the fasta shootout for go
+    go:
+        fasta:
+    # This will blacklist the fasta shootouts with labels 1, 2, and 4 for gcc
+    gcc:
+        fasta: 1, 2, 4
+
+...
+# Terminator
